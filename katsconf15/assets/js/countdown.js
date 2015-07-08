@@ -22,9 +22,9 @@
         element = $(this);
 
         var defaults = $.extend({
-            start: '1362139200',
-            end: '1388461320',
-            now: '1387461319',
+            start: '1436365447',
+            end: '1442048400',
+            now: '1436365447',
             selectors: {
                 value_seconds: '.clock_seconds .val',
                 canvas_seconds: 'canvas_seconds',
