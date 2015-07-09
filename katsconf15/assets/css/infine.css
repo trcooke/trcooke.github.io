@@ -6749,6 +6749,9 @@ filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);
 	color: #292c33;
 	font-weight: lighter
 }
+.our-partners-wrapper .our-partners h3 {
+	text-align: center;
+}
 .our-partners-wrapper .our-partners .our-partners-logo {
 	-webkit-transition: all 0.2s ease;
 	transition: all 0.2s ease;

@@ -135,7 +135,7 @@ $(document).ready(function() {
         mapTypeControlOptions: {
             mapTypeIds: ['Styled']
         },
-        center: new google.maps.LatLng(-7.245217594087794, 112.74455556869509),
+        center: new google.maps.LatLng(53.339371, -6.257495),
         zoom: 16,
         disableDefaultUI: true,
         mapTypeId: 'Styled'
@@ -144,7 +144,7 @@ $(document).ready(function() {
     var map = new google.maps.Map(div, options);
 
     new google.maps.Marker({
-        position: new google.maps.LatLng(-7.245217594087794, 112.74455556869509),
+        position: new google.maps.LatLng(53.339371, -6.257495),
         map: map
     });
 
