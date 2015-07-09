@@ -5,7 +5,7 @@ excerpt: "Book Review: Pragmatic Unit Testing in Java 8 - by Jeff Langr"
 tags: [book-review, java8, unit-testing, pragprog, coderanch]
 comments: false
 image:
-  feature: elixir-header.png
+  feature: prag-test-java8.png
   credit: PragProg
   creditlink: https://pragprog.com/book/utj2/pragmatic-unit-testing-in-java-8-with-junit
 ---
