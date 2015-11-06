@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Book Review: Your Code as a Crime Scene"
+title: "Book Review: 'Your Code as a Crime Scene' by Adam Tornhill"
 excerpt: "Book Review: Your Code as a Crime Scene - by Adam Tornhill"
 tags: [book-review, development, pragprog, coderanch, adam tornhill]
 comments: false
 image:
   feature: crime-scene-banner.png
   credit: PragProg
-  creditlink: https://pragprog.com/book/rjnsd/the-nature-of-software-development
+  creditlink: https://pragprog.com/book/atcrime/your-code-as-a-crime-scene
 ---
 
 Rating: 10/10
