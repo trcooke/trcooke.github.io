@@ -5,7 +5,7 @@ description: "Capturing Method Call Arguments with Mockito"
 tags: [testing, java, programming, mocking, mockito]
 ---
 
-Here's a little testing step by step walk-through of how to capture arguments being passed to a method in order to make assertions on them.
+Here's how to capture arguments being passed to a method in order to make assertions on them.
 
 Take the following production code. You want to make assertions on the `User` object that is being passed into the `migrationDao.migrate()` method from your class under test.
 
@@ -26,41 +26,38 @@ public class User {
 {% endhighlight %}
 
 {% highlight java %}
-public class SomeService {
+public class MigrationService {
     private MigrationDao migrationDao;
 
-    public SomeService(MigrationDao migrationDao) {
+    public MigrationService(MigrationDao migrationDao) {
         this.migrationDao = migrationDao;
     }
 
-    public void migrateUser(User user) {
+    public void migrate(User user) {
         migrationDao.migrate(user);
     }
 
-    public void migrateUsers(List<User> users) {
-        users.forEach(user -> migrationDao.migrate(user));
-    }
 }
 {% endhighlight %}
 
-Capture the argument using Mockito's `ArgumentCaptor`.
+Capture the argument using Mockito's `ArgumentCaptor` in order to make specific assertions on the object passed.
 
 {% highlight java %}
-public class SomeServiceTest {
+public class MigrationServiceTest {
 
-    private SomeService someService;
+    private MigrationService MigrationService;
     private MigrationDao migrationDaoMock;
 
     @Before
     public void setup() {
         migrationDaoMock = mock(MigrationDao.class);
-        someService = new SomeService(migrationDaoMock);
+        migrationService = new MigrationService(migrationDaoMock);
     }
 
     @Test
     public void migrate_givenMigrateSingleUserNamedTimAged37_shouldReceiveUserNamedTimAged37() {
         User userToMigrate = new User("Tim", 37);
-        someService.migrateUser(userToMigrate);
+        migrationService.migrateUser(userToMigrate);
         
         ArgumentCaptor<User> userArgCaptor = ArgumentCaptor.forClass(User.class);
         verify(mockMigrationDao).migrate(userArgCaptor.capture());
@@ -71,3 +68,4 @@ public class SomeServiceTest {
     }
 }
 {% endhighlight %}
+
