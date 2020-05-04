@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-GB">
+
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'UA-51804365-1');
-</script>
+    gtag('config', 'UA-51804365-1');
+  </script>
+  <link rel="stylesheet" href="/style/site.css">
   <title>Conway's Game of Life</title>
 </head>
+
 <body>
-    <h1>Conway's Game of Life</h1>
-    <p>Randomly generated starting data grid. Refresh the page to start again.</p>
-    <canvas id='canvas'>
-    </canvas>
-    <div id='info'>
-    </div>
-    <script src="conway.js"></script>
+  <h1>Conway's Game of Life</h1>
+  <p>Randomly generated starting data grid. Refresh the page to start again.</p>
+  <canvas id='canvas'>
+  </canvas>
+  <div id='info'>
+  </div>
+  <script src="conway.js"></script>
 </body>
+
 </html>
