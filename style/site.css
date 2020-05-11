@@ -1,3 +1,10 @@
 html {
-    font-family: Tahoma, Geneva, sans-serif;
-  }
+  font-family: Tahoma, Geneva, sans-serif;
+}
+body{
+  max-width:40em;
+  margin:0 auto;
+  padding:5px;
+  background-color:#fff;
+  color:#000
+}
