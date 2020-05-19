@@ -1,10 +1,30 @@
 html {
   font-family: Tahoma, Geneva, sans-serif;
 }
-body{
+body {
   max-width:60em;
   margin:0 auto;
   padding:5px;
   background-color:#fff;
   color:#000
+}
+
+.home a:link {
+  text-decoration: none;
+  color: black;
+}
+
+.home a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.home a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.home a:active {
+  text-decoration: none;
+  color: #000;
 }
