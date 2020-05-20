@@ -51,7 +51,8 @@ h3 {
 
 .book-review img {
   float: right;
-  padding-left: 15px;
+  margin-left: 15px;
+  border: 1px solid #ccc;
 }
 
 .book-review .label {
