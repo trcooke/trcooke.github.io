@@ -49,6 +49,11 @@ h3 {
   color: #000;
 }
 
+.book-review {
+  float: right;
+  padding-left: 15px;
+}
+
 @media screen and (max-width: 440px){
 	h1{
 		font-size:2em
