@@ -65,7 +65,7 @@
         User userToMigrate = new User("Tim", 37);
         migrationService.migrateUser(userToMigrate);
         
-        ArgumentCaptor<User> userArgCaptor = ArgumentCaptor.forClass(User.class);
+        ArgumentCaptor&lt;User> userArgCaptor = ArgumentCaptor.forClass(User.class);
         verify(mockMigrationDao).migrate(userArgCaptor.capture());
         User userPassedToMigrationDao = userArgCaptor.getValue();
         
