@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Quick Linux HTTP Server (httpd) | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Quick Linux HTTP Server (httpd)</h2>
+    <small>18th July 2020</small>
+    <p>Say you want to serve the contents of a single directory on your local machine but don't want the hassle of 
+        installing and configuring a full HTTP Server like Apache or similar. Perhaps you're building a simple website 
+        such as this one? What can you do? You could use <code>busybox</code>. That's what I do.</p>
+    <p>The following instructions are applicable for Ubuntu because that's that's what I use, but it will also apply to 
+        other Debian based Linux distrubutions that use the <code>apt</code> package manager.</p>
+    <h3>Installation</h3>
+    <pre><code class="language-bash">$ sudo apt install busybox</code></pre>
+    <h3>Usage</h3>
+    <p>Navigate to the directory from where you want to serve the website. For example this is how I use busybox to 
+        serve this website on port 9000 for local development.</p>
+        <pre><code class="language-bash">$ cd ~/Development/github/trcooke.github.io
+$ busybox httpd -f -p 9000</code></pre>
+    <p>Now I can access my website locally at <code>http://localhost:9000</code></p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
