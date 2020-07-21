@@ -27,6 +27,8 @@
         what the environment variables were for a running process within a <code>screen</code> session. I could not
         run <code>env</code> in that session because I would have to stop the running process which happened to be a
         live production system so was not an option. I needed another way.</p>
+    <p>In this example I'm going to find the environment variables for the <a href="/quickhttpd">running 
+        <code>busybox</code> process</a> I'm using to host this website locally right now</p>
     <p>Find the <code>pid</code> of the running process:</p>
     <pre><code class="language-bash">$ ps -ef | grep busybox
 tim         7775    5273  0 22:13 pts/0    00:00:00 busybox httpd -f -p 9000
