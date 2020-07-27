@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Exercises for Programmers (Python): 2 of 57 - Counting the Number of Characters | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Exercises for Programmers (Python): 2 of 57 - Counting the Number of Characters</h2>
+    <small>27th July 2020</small>
+    <p>Exercise 2 in book <a href="https://pragprog.com/titles/bhwb/">Exercises for Programmers: 57 Challenges to Develop Your Coding Skills</a>
+        by <a href="https://bphogan.com/">Brian P. Hogan</a>.</p>
+    <blockquote><p>Create a program that prompts for an input string and displays output that shows the input string
+        and the number of characters the string contains.</p>
+        <h4>Example Output</h4>
+        <pre>What is the input string? Homer
+Homer has 5 characters</pre>
+    </blockquote>
+    <p>I'll start with a test. Again I'm making assumptions about the structure of the code and expecting a function called
+        <code>charcount()</code> that takes a string and returns a number. Python is a dynamically typed system so I'm not
+        entirely sure what type a string and a number are, but maybe I'll find out along the way.</p>
+    <pre><code class="language-python">import unittest
+import counting
+
+
+class TestHello(unittest.TestCase):
+
+    def test_givenValidString_returnsExpectedCount(self):
+        self.assertEqual(counting.charcount('Tim'), 3)</code></pre>
+        <p>Run test test</p>
+        <pre><code class="language-none">$ python3 -m unittest
+E
+======================================================================
+ERROR: test_givenValidString_returnsExpectedCount (test_counting.TestHello)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tim/Development/github/57-exercises-python/02-counting-the-number-of-characters/test_counting.py", line 8, in test_givenValidString_returnsExpectedCount
+    self.assertEqual(counting.charcount('Tim'), 3)
+AttributeError: module 'counting' has no attribute 'charcount'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)</code></pre>
+        <p>Failed. Expected because I haven't written anything yet. My first approach is always to make the test pass
+            in the simplest way possible which may not look like the right thing to do but is part of my process.</p>
+        <pre><code class="language-python">def charcount(string):
+    return 3
+
+
+if __name__ == "__main__":
+    inputstring = input("What is the input string? ")
+    count = charcount(input)
+    print(inputstring + " has " + count + " characters")</code></pre>
+        <p>Run tests again</p>
+        <pre><code class="language-none">$ python3 -m unittest
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK</code></pre>
+        <p>The unit tests are passing which is great. I've used the same approach I learned last time about how to 
+            use the <code>__main__</code> check to exclude the keyboard input and terminal output code from the
+            automated tests, so let's go for a manual test of the code run as a script:</p>
+        <pre><code class="language-none">$ python3 counting.py 
+What is the input string? Tim
+Traceback (most recent call last):
+  File "counting.py", line 8, in <module>
+    print(inputstring + " has " + count + " characters")
+TypeError: can only concatenate str (not "int") to str</code></pre>
+        <p>Not quite as expected but I'm learning about the type system which is a positive. Strings are a 
+            <code>str</code> type and <code>3</code> is an <code>int</code> type. I figure out how to convert
+            an <code>int</code> to a <code>str</code> using the <code>str()</code> function so updated the print
+            fuction to use it.</p>
+        <pre><code class="language-python">print(inputstring + " has " + str(count) + " characters")</code></pre>
+        <p>Try again</p>
+        <pre><code class="language-none">$ python3 counting.py 
+What is the input string? Homer
+Homer has 3 characters</code></pre>
+        <p>That's fixed the type problems but has now highlighted the flaw in my <em>simple</em> solution
+            earlier, "Homer" does not have 3 characters. How do you figure out how many characters are in a string?
+            A flit round the Python library docs suggests that <code>len()</code> might be what I'm looking for. 
+            But first, another test</p>
+        <pre><code class="language-python">def test_givenValidString_returnsExpectedCount(self):
+    self.assertEqual(counting.charcount('Tim'), 3)
+
+def test_givenLongerString_returnsExpectedCount(self):
+    self.assertEqual(counting.charcount('Situation'), 9)</code></pre>
+        <p>Confirm it fails</p>
+        <pre><code class="language-none">$ python3 -m unittest
+F.
+======================================================================
+FAIL: test_givenLongerString_returnsExpectedCount (test_counting.TestHello)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/tim/Development/github/57-exercises-python/02-counting-the-number-of-characters/test_counting.py", line 11, in test_givenLongerString_returnsExpectedCount
+    self.assertEqual(counting.charcount('Situation'), 9)
+AssertionError: 3 != 9
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+FAILED (failures=1)</code></pre>
+        <p>Make it pass</p>
+        <pre><code class="language-python">def charcount(string):
+    return len(string)</code></pre>
+        <pre><code class="language-none">$ python3 -m unittest
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK</code></pre>
+        <p>And when run as a script</p>
+        <pre><code class="language-none">$ python3 counting.py 
+What is the input string? Homer
+Homer has 5 characters</code></pre>
+        <p></p>
+        <h3>Learning review</h3>
+        <ul>
+            <li>Python is dynamically typed</li>
+            <li>Python strings are represented with the <code>str</code> type.</li>
+            <li>Python numbers, specifically integers, are represented with the <code>int</code> type.</li>
+            <li>The first line of the <code>unittest</code> output is a GUI(ish) summary of the test run, e.g. 
+                <code>F.</code> meaning one test failed and one passed. The outputs I've seen so far are: 
+                <code>E</code> Error, <code>F</code> Failure, and <code>.</code> Pass.</li>
+            <li>String concatenation with <code>+</code> only works with <code>str</code> typed arguments.</li>
+            <li>Finding out the length of a string is done with <code>len()</code>.</li>
+        </ul>
+        <h3>Github</h3>
+        <p><a href="https://github.com/trcooke/57-exercises-python/tree/master/02-counting-the-number-of-characters" target="_blank">57-exercises-python/02-counting-the-number-of-characters/</a></p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
