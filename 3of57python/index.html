@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Exercises for Programmers (Python): 3 of 57 - Printing Quotes | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Exercises for Programmers (Python): 3 of 57 - Printing Quotes</h2>
+    <small>29th July 2020</small>
+    <p>Exercise 3 in book <a href="https://pragprog.com/titles/bhwb/">Exercises for Programmers: 57 Challenges to Develop Your Coding Skills</a>
+        by <a href="https://bphogan.com/">Brian P. Hogan</a>.</p>
+    <blockquote><p>Create a program that prompts for a quote and an author. Display the quotation and author as shown in the example output.</p>
+        <h4>Example Output</h4>
+        <pre>What is the quote? These aren't the droids you're looking for.
+Who said it? Obi-Wan Kenobi
+Obi-Wan Kenobi says, "These aren't the droids you're looking for."</pre>
+    </blockquote>
+    <p>I'll start with a test. Again I'm making assumptions about the structure of the code and expecting a function called
+        <code>quotation()</code> that takes a string author and a string quote and returns the output sentence.</p>
+    <pre><code class="language-python">import unittest
+import qoutes
+
+
+class TestQuotes(unittest.TestCase):
+
+    def test_givenPlainQuote_returnQuotationOutput(self):
+        self.assertEqual(quotes.quotation('Michael Barry', 'If in doubt, git checkout'),
+                         "Michael Barry says, \"If in doubt, git checkout\"")</code></pre>
+        <p>A nod to a favourite quote (of his and mine) from a past colleague 
+            <a href="https://twitter.com/MichaelBarryUU">Michael Barry</a>. As expected this test fails because I 
+            haven't written any implentation yet, so let's get right to it. My initial thoughts were that I'd need to
+            do all sorts of parsing and special handling of the quotes in the passed in string but it turns out all
+            I need to do is figure out how to print the <code>"</code> symbol inside a string. As is common in many 
+            languages the backslash <code>\</code> is the escape character, meaning <code>\"</code> is the double quote
+            string literal.</p>
+        <pre><code class="language-python">def quotation(who, says):
+    return who + " says, \"" + says + "\""</code></pre>
+        <p>That test text didn't contain any quote characters so let's write another test to see if they're handled.</p>
+        <pre><code class="language-python">def test_givenTextWithQuotes_returnQuotationOutput(self):
+    self.assertEqual(quotes.quotation('Obi-Wan Kenobi', 'These aren\'t the droids you\'re looking for.'),
+                     "Obi-Wan Kenobi says, \"These aren\'t the droids you\'re looking for.\"")</code></pre>
+        <p>Yup, all good</p>
+        <pre><code class="language-none">$ python3 -m unittest
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK</code></pre>
+        <p>Using the same <code>__main__</code> trick for handling terminal io</p>
+        <pre><code class="language-python">if __name__ == "__main__":
+    quote = input("What is the quote? ")
+    who = input("Who said it? ")
+    output = quotation(who, quote)
+    print(output)</code></pre>
+        <pre><code class="language-none">$ python3 quotes.py 
+What is the quote? These aren't the droids you're looking for.
+Who said it? Obi-Wan Kenobi
+Obi-Wan Kenobi says, "These aren't the droids you're looking for."</code></pre>
+        <h3>Learning review</h3>
+        <ul>
+            <li>I forgot to rename the class name after copying it from a previous example and everything worked just 
+                fine. Coming from Java where the file name and class name must match it took me by surprise that 
+                Python is not fussy like that.</li>
+            <li>In Python the backslack <code>\</code> is the escape character to make string literals of characters
+                that otherwise would have meaning in the Python syntax, such as <code>\"</code> and <code>\'</code>.</li>
+        </ul>
+        <h3>Github</h3>
+        <p><a href="https://github.com/trcooke/57-exercises-python/tree/master/03-printing-quotes" target="_blank">57-exercises-python/03-printing-quotes/</a></p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
