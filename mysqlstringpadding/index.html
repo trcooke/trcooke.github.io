@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>String padding and concatenation in MySQL | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>String padding and concatenation in MySQL</h2>
+    <small>6th August 2020</small>
+    <p>I recently had a need to generate a specifically formatted string as part of a SQL query on MySQL. In general my
+        SQL skills are weak so had to learn a couple of MySQL features to achieve it, which I'll present here.</p>
+    <h3>The Problem</h3>
+    <p>Given an Integer value, say <code>79</code>, generate a string in the format <code>P00079</code>.</p>
+    <h3>The Solution</h3>
+    <p>Breaking down this problem identifies two parts:</p>
+    <ol>
+        <li>Prefix with a <code>P</code> character</li>
+        <li>Left Pad the integer value with <code>0</code>s up to a total of 5 characters.</li>
+    </ol>
+    <p>After a little tour around the <a href="https://dev.mysql.com/doc/" target="_blank">MySQL Documentation</a> I
+        found a couple of things in the <a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html" 
+        target="_blank">String Functions and Operators</a> page that look to be just what I'm after, specifically 
+        <a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_concat" target="_blank">
+        CONCAT()</a> and <a href="https://dev.mysql.com/doc/refman/8.0/en/string-functions.html#function_lpad"
+        target="_blank">LPAD()</a>.</p>
+    <p>Let's start with <code>LPAD(str,len,padstr)</code>.</p>
+    <blockquote>Returns the string str, left-padded with the string padstr to a length of len characters.</blockquote>
+    <pre><code class="language-sql">select LPAD(79, 5, '0');
+'00079'</code></pre>
+    <p>That looks good. Now let's play with <code>CONCAT(str1,str2,...)</code>.</p>
+    <blockquote>Returns the string that results from concatenating the arguments.</blockquote>
+    <pre><code class="language-sql">select CONCAT('P', '79');
+'P79'</code></pre>
+    <p>Also good, now to combine them to get what we really want.</p>
+    <pre><code class="language-sql">select concat('P', LPAD(79, 5, '0'));
+'P00079'</code></pre>
+    <p>All done.</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+
+</html>
