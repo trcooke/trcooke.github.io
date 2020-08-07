@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Add a Linux service on Ubuntu | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Add a Linux service on Ubuntu</h2>
+    <small>7th August 2020</small>
+    <p>I have an application that I need to run on a Linux server, but I need it to be able to recover from a system 
+        restart or a process failure, and start up again automatically. The best way I know to achieve that is to 
+        configure the application as a system service, and since I'm using Ubuntu then <code>systemd</code> is what
+        I need to work with.</p>
+    <p>In order to test this out I'm going to be using a jar file, <code>hello.jar</code>, that runs a small REST api 
+        service. It is started like this:</p>
+    <pre><code class="language-none">$ java -jar hello.jar</code></pre>
+    <p>The API has a single GET endpoint:</p>
+    <pre><code class="language-none">$ curl localhost:8080/hello
+Hello, World!</code></pre>
+    <p>But as soon as the process is stopped, which could happen because the server restarted, or the process died or 
+        was killed for some reason, then there is no recovery:</p>
+    <pre><code class="language-none">$ curl localhost:8080/hello
+curl: (7) Failed to connect to localhost port 8080: Connection refused</code></pre>
+    <p>Oh dear.</p>
+    <p>Let's add the application as a process. First create a file <code>/lib/systemd/system/hello.service</code>.</p>
+    <pre><code class="language-none">[Unit]
+Description=Hello REST api
+
+[Service]
+Restart=always
+RestartSec=1
+User=tim
+ExecStart=java -jar /home/tim/Development/deployment/hello.jar
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+    <p>Once that file is saved then the service is created but not started</p>
+    <pre><code class="language-none">$ service hello status
+● hello.service - Hello REST api
+     Loaded: loaded (/lib/systemd/system/hello.service; disabled; vendor preset>
+     Active: inactive (dead)</code></pre>
+     <p>Now to start the service</p>
+     <pre><code class="language-none">$ sudo service hello start</code></pre>
+     <pre><code class="language-none">$ service hello status
+● hello.service - Hello REST api
+     Loaded: loaded (/lib/systemd/system/hello.service; disabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-08-07 12:45:45 BST; 5s ago
+   Main PID: 4973 (java)
+      Tasks: 40 (limit: 18808)
+     Memory: 263.4M
+     CGroup: /system.slice/hello.service
+             └─4973 /usr/bin/java -jar /home/tim/Development/deployment/hello.jar</code></pre>
+    <p>This is good, but notice the line <code>loaded (/lib/systemd/system/hello.service; disabled; vendor preset: 
+        enabled)</code>, particularly where it says <code>disabled</code> which means it will not start automatically.
+        It needs to be enabled for that to happen.</p>
+    <pre><code class="language-none">$ sudo systemctl enable hello
+Created symlink /etc/systemd/system/multi-user.target.wants/hello.service → /lib/systemd/system/hello.service.</code></pre>
+    <p>Now the status report says it's enabled and will now be automatically started after a system reboot.</p>
+    <pre><code class="language-none">$ service hello status
+● hello.service - Hello REST api
+     Loaded: loaded (/lib/systemd/system/hello.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2020-08-07 12:45:45 BST; 10min ago
+   Main PID: 4973 (java)
+      Tasks: 38 (limit: 18808)
+     Memory: 264.0M
+     CGroup: /system.slice/hello.service
+             └─4973 /usr/bin/java -jar /home/tim/Development/deployment/hello.jar</code></pre>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
