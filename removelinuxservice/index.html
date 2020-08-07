@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Remove a Linux service on Ubuntu | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Remove a Linux service on Ubuntu</h2>
+    <small>7th August 2020</small>
+    <p>I have an application running as a service on an Ubuntu Linux machine that I no longer need so want to stop it
+        and remove is as a service to make sure it doesn't get started automatically on system start up.</p>
+    <p>I'll test this out using the service I previously created in <a href="/addlinuxservice/">Add a Linux Service on 
+        Ubuntu</a>. First the service needs to be stopped, the systemd script deleted, and the service registration 
+        removed.</p>
+    <pre><code class="language-none">$ sudo service hello stop</code></pre>
+    <pre><code class="language-none">$ sudo rm /lib/systemd/system/hello.service</code></pre>
+    <pre><code class="language-none">$ sudo systemctl daemon-reload</code></pre>
+    <pre><code class="language-none">$ sudo systemctl reset-failed</code></pre>
+    <p>Now check that the service no longer exists.</p>
+    <pre><code class="language-none">$ service hello status
+Unit hello.service could not be found.</code></pre>
+    <p>Done.</p>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
