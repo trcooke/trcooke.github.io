@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Search and filter a HTML table with JavaScript | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Search and filter a HTML table with JavaScript</h2>
+    <small>15th August 2020</small>
+    <p>Because the list of articles and book reviews on this website is getting longer I wanted a way to find the one I'm looking for 
+        quickly, so I decided that a search function would be a nice addition as well as a fun project.</p>
+    <p>Honestly though I'm really lazy so consulted the internet for how to do it. The solution I implemented is pretty
+        much as presented in <a href="https://www.w3schools.com/howto/howto_js_filter_table.asp" target="_blank">
+        s3schools.com : How TO - Filter/Search Table</a>.</p>
+    <h3>HTML</h3>
+    <pre><code class="language-html">&lt;input type="text" class="searchInput" id="searchArticles" onkeyup="searchArticles()" placeholder="Search articles..">
+&lt;table id="articles">
+    &lt;tr>&lt;td>&lt;a href="/tablesearch">Search and filter a HTML table with JavaScript&lt;/a>&lt;/td>&lt;/tr>
+    &lt;tr>&lt;td>&lt;a href="/4of57python">Exercises for Programmers (Python): 4 of 57 - Mad Lib&lt;/a>&lt;/td>&lt;/tr>
+    &lt;tr>&lt;td>&lt;a href="/removelinuxservice">Remove a Linux service on Ubuntu&lt;/a>&lt;/td>&lt;/tr>
+&lt;/table></code></pre>
+    <h3>JavaScript</h3>
+    <pre><code class="language-javascript">function searchArticles() {
+    search('searchArticles', 'articles');
+}
+    
+function search(searchInput, searchTable) {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById(searchInput);
+    filter = input.value.toUpperCase();
+    table = document.getElementById(searchTable);
+    tr = table.getElementsByTagName("tr");
+    
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}</code></pre>
+    <p>A little bit of CSS to make it look nice (also largely stolen from w3schools) and It's done.</p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
