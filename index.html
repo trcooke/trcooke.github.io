@@ -11,6 +11,7 @@
 
         gtag('config', 'UA-51804365-1');
     </script>
+    <script src="/script/search.js"></script>
     <link rel="stylesheet" href="/style/site.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -30,31 +31,37 @@
     </section>
     <section id="index-articles">
         <h2>Articles</h2>
-        <p><a href="/4of57python">Exercises for Programmers (Python): 4 of 57 - Mad Lib</a></p>
-        <p><a href="/removelinuxservice">Remove a Linux service on Ubuntu</a></p>
-        <p><a href="/addlinuxservice">Add a Linux service on Ubuntu</a></p>
-        <p><a href="/mysqlstringpadding">String padding and concatenation in MySQL</a></p>
-        <p><a href="/journalctltofile">Saving journalctl logs to a file</a></p>
-        <p><a href="/3of57python">Exercises for Programmers (Python): 3 of 57 - Printing Quotes</a></p>
-        <p><a href="/2of57python">Exercises for Programmers (Python): 2 of 57 - Counting the Number of Characters</a></p>
-        <p><a href="/1of57python">Exercises for Programmers (Python): 1 of 57 - Saying Hello</a></p>
-        <p><a href="/envvar">Environment Variables of a Running Process (Linux)</a></p>
-        <p><a href="/quickhttpd">Quick Linux HTTP Server (httpd)</a></p>
-        <p><a href="/mockitocaptureargs">Capturing Method Call Arguments with Mockito</a></p>
-        <p><a href="/testdouble">Fake (Mock) local method with a Test Double</a></p>
-        <p><a href="/dslreadability">Introducing Domain Specific Language (DSL) to improve code readability</a></p>
-        <p><a href="/annotatemagic">Annotate your Magic Numbers</a></p>
-        <p><a href="/notintdd">There ain't no T in TDD</a></p>
-        <p><a href="/mavengenerate">Create a bare bones Java application with Maven</a></p>
-    </section>
+        <input type="text" class="searchInput" id="searchArticles" onkeyup="searchArticles()" placeholder="Search articles..">
+        <table id="articles">
+            <tr><td><a href="/4of57python">Exercises for Programmers (Python): 4 of 57 - Mad Lib</a></td></tr>
+            <tr><td><a href="/removelinuxservice">Remove a Linux service on Ubuntu</a></td></tr>
+            <tr><td><a href="/addlinuxservice">Add a Linux service on Ubuntu</a></td></tr>
+            <tr><td><a href="/mysqlstringpadding">String padding and concatenation in MySQL</a></td></tr>
+            <tr><td><a href="/journalctltofile">Saving journalctl logs to a file</a></td></tr>
+            <tr><td><a href="/3of57python">Exercises for Programmers (Python): 3 of 57 - Printing Quotes</a></td></tr>
+            <tr><td><a href="/2of57python">Exercises for Programmers (Python): 2 of 57 - Counting the Number of Characters</a></td></tr>
+            <tr><td><a href="/1of57python">Exercises for Programmers (Python): 1 of 57 - Saying Hello</a></td></tr>
+            <tr><td><a href="/envvar">Environment Variables of a Running Process (Linux)</a></td></tr>
+            <tr><td><a href="/quickhttpd">Quick Linux HTTP Server (httpd)</a></td></tr>
+            <tr><td><a href="/mockitocaptureargs">Capturing Method Call Arguments with Mockito</a></td></tr>
+            <tr><td><a href="/testdouble">Fake (Mock) local method with a Test Double</a></td></tr>
+            <tr><td><a href="/dslreadability">Introducing Domain Specific Language (DSL) to improve code readability</a></td></tr>
+            <tr><td><a href="/annotatemagic">Annotate your Magic Numbers</a></td></tr>
+            <tr><td><a href="/notintdd">There ain't no T in TDD</a></td></tr>
+            <tr><td><a href="/mavengenerate">Create a bare bones Java application with Maven</a></td></tr>
+    </table>
+</section>
     <section id="index-reviews">
         <h2>Book Reviews</h2>
-        <p><a href="/cayjava9">Core Java SE 9 for the Impatient (2nd Edition) - Cay Horstmann</a></p>
-        <p><a href="/functionalthinking">Functional Thinking: Paradigm Over Syntax - Neal Ford</a></p>
-        <p><a href="/crimescene">Your Code as a Crime Scene - Adam Tornhill</a></p>
-        <p><a href="/nature">The Nature of Software Development - Ron Jeffries</a></p>
-        <p><a href="/pragmaticjunit">Pragmatic Unit Testing in Java 8 with JUnit - Jeff Langr</a></p>
-        <p><a href="/elixir">Programming Elixir - Dave Thomas</a></p>
+        <input type="text" class="searchInput" id="searchReviews" onkeyup="searchReviews()" placeholder="Search reviews..">
+        <table id="reviews">
+            <tr><td><a href="/cayjava9">Core Java SE 9 for the Impatient (2nd Edition) - Cay Horstmann</a></td></tr>
+            <tr><td><a href="/functionalthinking">Functional Thinking: Paradigm Over Syntax - Neal Ford</a></td></tr>
+            <tr><td><a href="/crimescene">Your Code as a Crime Scene - Adam Tornhill</a></td></tr>
+            <tr><td><a href="/nature">The Nature of Software Development - Ron Jeffries</a></td></tr>  
+            <tr><td><a href="/pragmaticjunit">Pragmatic Unit Testing in Java 8 with JUnit - Jeff Langr</a></td></tr>
+            <tr><td><a href="/elixir">Programming Elixir - Dave Thomas</a></td></tr>
+        </table>
     </section>
     <section id="index-projects">
         <h2>Projects</h2>

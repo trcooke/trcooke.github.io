@@ -1,6 +1,7 @@
 html {
   font-family: Tahoma, Geneva, sans-serif;
 }
+
 body {
   max-width:45em;
   margin:0 auto;
@@ -78,6 +79,26 @@ code {
 pre {
   font-size: 95%;
 }
+
+table#articles, table#reviews {
+  border-collapse: collapse;
+}
+
+table#articles td, table#reviews td {
+  padding-top: 10px;
+}
+
+.searchInput {
+  background-image: url('/assets/searchicon.png'); /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 0; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
 @media screen and (max-width: 440px){
 	h1{
 		font-size:2em
