@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Exercises for Programmers (Python): 6 of 57 - Retirement Calculator | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Exercises for Programmers (Python): 6 of 57 - Retirement Calculator</h2>
+    <small>30th August 2020</small>
+    <p>Exercise 6 in book <a href="https://pragprog.com/titles/bhwb/">Exercises for Programmers: 57 Challenges to Develop Your Coding Skills</a>
+        by <a href="https://bphogan.com/">Brian P. Hogan</a>.</p>
+    <blockquote><p>Create a program that determines how many ears you have left until retirement and the year you can
+        retire. It should prompt for your current age and the age you want to retire and display the output as shown 
+        in the example that follows.</p>
+        <h4>Example Output</h4>
+        <pre>What is your current age? 25
+At what age would you like to retire? 65
+You have 40 years left until you can retire.
+It's 2015, so you can retire in 2055</pre></blockquote>
+    <p>This exercise is all about using your programming language to interrogate the operating system for the current 
+        date. I expect this will be relatively straight forward, but the real challenge in this exercise comes with 
+        writing the unit tests. Testing code who's behaviour is dependent on the system clock is really difficult 
+        because you have no control over its value. For example, a test that asserts that 2 years from now is 2022 
+        will only be valid while the year is 2020, and as soon as it becomes 2021 the test is invalid and will fail.</p>
+    <p>This leads me into thinking about how to gain control of the system clock from within my tests. Perhaps there
+        are <em>mock</em> tools available for Python, or maybe I can leverage the fact that Python is an Object 
+        Oriented language for a simpler solution. Let's see.</p>
+    <p>First I'll use some tests to drive the implementation of the easy bits.</p>
+    <pre><code class="language-python">class TestRetirementCalculator(unittest.TestCase):
+
+    def test_givenCurrentAge_andRetirementAge_thenCalculateYearsLeft(self):
+        self.assertEqual(retirement_calculator.yearsleft(25, 65), 40)
+    
+    def test_givenCurrentYear_andYearsLeft_thenCalculateRetirementYear(self):
+        self.assertEqual(retirement_calculator.retirementyear(2016, 40), 2056)</code></pre>
+    <pre><code class="language-python">def yearsleft(currentage, retirementage):
+    return retirementage - currentage
+    
+    
+def retirementyear(currentYear, yearsLeft):
+    return currentYear + yearsLeft
+
+
+if __name__ == "__main__":
+    currentage = input("What is your current age? ")
+    retirementage = input("At what age would you like to retire? ")
+    yearsleft = yearsleft(int(currentage), int(retirementage))
+    print("You have " + str(yearsleft) + " years left until you can retire.")</code></pre>
+    <p>So far so good.</p>
+    <pre><code class="language-none">$ python3 exercises/Ex06_retirement_calculator/retirement_calculator.py 
+What is your current age? 25
+At what age would you like to retire? 65
+You have 40 years left until you can retire.</code></pre>
+    <p>Now, how to get that current year, and those tricky unit tests. Geting the current year turns out to be pretty
+        easy.</p>
+    <pre><code class="language-python">from datetime import datetime
+datetime.now().year</code></pre>
+    <p>So far I've only been working with Python as a scripting language and it's now time to progress into using its
+        Object Oriented features. When programming in Java I might create a test subclass of the class under test to
+        override a particular method in order to inject test data into the class. In order to try that out I have to
+        refactor my script style code into OO style.</p>
+    <pre><code class="language-python">from datetime import datetime
+
+
+class RetirementCalculator:
+
+    def yearsleft(self, currentage, retirementage):
+        return retirementage - currentage
+
+    def retirementyear(self, yearsLeft):
+        return self.currentyear() + yearsLeft
+
+    def currentyear(self):
+        return datetime.now().year
+
+
+if __name__ == "__main__":
+    currentage = input("What is your current age? ")
+    retirementage = input("At what age would you like to retire? ")
+    retirementCalculator = RetirementCalculator()
+    yearsleft = retirementCalculator.yearsleft(int(currentage), int(retirementage))
+    print("You have " + str(yearsleft) + " years left until you can retire.")
+    print("It's " + str(retirementCalculator.currentyear()) + ", so you can retire in " + str(
+        retirementCalculator.retirementyear(yearsleft)))</code></pre>
+    <p>The difficulty in testing this class is that because it relies on the system time it is non-deterministic, 
+        meaning I cannot guarantee its output for a given input, due to the external dependency on the system time. To 
+        make the class more testable I have extracted the system time interaction into its own function with the 
+        intention of creating a test double within my test file that overrides that function and returns a specific 
+        value for the tests.</p>
+    <pre><code class="language-python">import unittest
+
+from exercises.Ex06_retirement_calculator.retirement_calculator import RetirementCalculator
+
+
+class TestRetirementCalculator(RetirementCalculator):
+
+    def currentyear(self):
+        return 2016
+
+
+class TestRetirementCalculator(unittest.TestCase):
+    retirementCalculator = TestRetirementCalculator()
+
+    def test_givenCurrentAge_andRetirementAge_thenCalculateYearsLeft(self):
+        self.assertEqual(self.retirementCalculator.yearsleft(25, 65), 40)
+
+    def test_givenCurrentYear_andYearsLeft_thenCalculateRetirementYear(self):
+        self.assertEqual(self.retirementCalculator.retirementyear(40), 2056)</code></pre>
+    <p>From running all the unit tests along with some manual testing it appears to have turn out nicely</p>
+    <pre><code class="language-none">$ python3 -m unittest discover -s exercises/Ex06_retirement_calculator/
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK</code></pre>
+    <pre><code class="language-none">$ python3 exercises/Ex06_retirement_calculator/retirement_calculator.py 
+What is your current age? 41
+At what age would you like to retire? 65
+You have 24 years left until you can retire.
+It's 2020, so you can retire in 2044</code></pre>
+        <h3>Learning review</h3>
+        <ul>
+            <li>Current system date and time is obtained via the <code>datetime</code> library</li>
+            <li>Current calendar year is obtained with <code>datetime.now().year</code></li>
+            <li>Python doesn't have interfaces in the same way as Java does.</li>
+            <li>Python polymorphism works similarly to Java</li>
+            <li>In Python it is valid to mix script and OO code in a single source file.</li>
+            <li>To refer to another method in the same class you must use the <code>self</code> prefix. E.g. 
+                <code>self.currentyear()</code></li>
+        </ul>
+        <h3>Github</h3>
+        <p><a href="https://github.com/trcooke/57-exercises-python/tree/master/src/exercises/Ex06_retirement_calculator" target="_blank">
+            57-exercises-python/src/exercises/Ex06_retirement_calculator</a></p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    </body>
+</html>
