@@ -31,6 +31,21 @@ h3 {
 	font-size:1.5em
 }
 
+div#example {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 1px;;
+  background-color: #cdd;
+}
+
+form input{
+  margin-left: 5px;
+}
+
+input {
+  margin-left: 5px;
+}
+
 .home a:link {
   text-decoration: none;
   color: black;

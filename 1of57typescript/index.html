@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-51804365-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-51804365-1');
+    </script>
+    <link rel="stylesheet" href="/style/site.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Exercises for Programmers (TypeScript): 1 of 57 - Saying Hello | Tim Cooke</title>
+</head>
+
+<body>
+    <h1 class="home"><a href="/">Tim Cooke</a></h1>
+    <h2>Exercises for Programmers (TypeScript): 1 of 57 - Saying Hello</h2>
+    <small>8th November 2020</small>
+    <p>My team are working a lot in TypeScript and I know nothing about it, so I've chosen this book by 
+        <a href="https://bphogan.com/">Brian P. Hogan</a> as a way to learn. 
+    <a href="https://pragprog.com/titles/bhwb/">Exercises for Programmers: 57 Challenges to Develop Your Coding Skills</a>.</p>
+    <blockquote><p>Create a program that prompts for your name and prints a greeting using your name.</p>
+        <h4>Example Output</h4>
+        <pre>What is your name? Brian
+Hello, Brian, nice to meet you!</pre>
+    </blockquote>
+    <p>Oh boy, where do I start? This is TypeScript, which is a superset of JavaScript, so why not have it run on this
+        browser, wouldn't that be fun! I'm going to need some way of getting user input, some way of indicating that 
+        I've finished user input, and some way of displaying output. That very much sounds like a form, so I'd better 
+        brush off my HTML skills.</p>
+        <div id="example">
+        <form id="greeting">
+            <label for="name">What is your name?</label><input id="name" type="text">
+            <input type="submit" value="Go!"></input>
+        </form>
+        <p>Output: <span id="output"></span></p>
+        </div>
+        <p>If you've tried out the form already you'll have noticed that I've skipped to the end. Let's recap
+            and see how I got there.</p>
+        <p>First I had to install the TypeScript compiler</p>
+        <pre><code class="language-none"></code>$ sudo npm install -g typescript</pre>
+        <p>Handily I already had node installed, but can be gotten from  
+            <a href="https://nodejs.org/">nodejs.org</a> if not.</p>
+        <p>Unlike JavaScript, TypeScript is a compiled language which really takes a lot of the guesswork out of
+            writing JS code since any syntax errors can be identified up front at compile time rather than at run
+            time which is typical when working with JS. Even if you simply wrote JavaScript and used the TypeScript
+            compiler for syntax validation there's value in that. For this exercise, this is the TypeScript code:</p>
+        <pre><code class="language-typescript">const form = document.getElementById("greeting");
+
+form.addEventListener("submit", function ( event ) {
+    event.preventDefault();
+    var nameInput = document.getElementById("name") as HTMLInputElement
+    var person = new Person(nameInput.value);
+            
+    var outputSpan = document.getElementById("output") as HTMLSpanElement
+    outputSpan.innerText = generateGreeting(person)
+})
+            
+function generateGreeting(person: Person) {
+    return "Hello, " + person.name + ", nice to meet you!"
+}
+            
+class Person {
+    constructor(public name: string) {
+    }
+}</code></pre>
+        <p>Which compiles with</p>
+        <pre><code class="language-none">$ tsc greeting.ts</code></pre>
+        <p>creating file <code>greeting.js</code> that contains</p>
+        <pre><code class="language-javascript">var form = document.getElementById("greeting");
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var nameInput = document.getElementById("name");
+    var person = new Person(nameInput.value);
+    var outputSpan = document.getElementById("output");
+    outputSpan.innerText = generateGreeting(person);
+});
+function generateGreeting(person) {
+    return "Hello, " + person.name + ", nice to meet you!";
+}
+var Person = /** @class */ (function () {
+    function Person(name) {
+        this.name = name;
+    }
+    return Person;
+}());</code></pre>
+        <p>That was pretty interesting being able to use the class construct to create custom types which is familiar 
+            to me coming from Java. It was also really useful to be able to cast/coerce the DOM element that would be 
+            fairly generic in JS into a <code>HTMLInputElement</code> which then gave my IDE guidance on what functions
+            are available for it and compile time validation that those functions are valid. In comparison to vanilla 
+            JS that's a big advantage.</p>
+        <p>For this example I wrote a single .ts file and compiled it to a .js file and my
+            initial research determined that in order to set up unit tests for TypeScript code it would need a bit more
+            of a convoluted setup, so I'll keep that in mind for the next example.
+        </p>
+        <h3>Learning review</h3>
+        <ul>
+            <li>JavaScript is actually TypeScript. Simply renaming your .js files with .ts extension is valid TypeScript.</li>
+            <li>Compiling TypeScript into JavaScript validates syntax.</li>
+            <li>You can use the <code>as</code> keyword to cast/coerce variables into a particular Type. e.g. 
+                <code>var nameInput = document.getElementById("name") as HTMLInputElement</code>.</li>
+        </ul>
+        <h3>Source Code</h3>
+        <p><a href="greeting.ts" target="_blank">
+            greeting.ts</a></p>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/line-highlight/prism-line-highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+        <script src="greeting.js"></script>
+    </body>
+</html>
