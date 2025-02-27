@@ -1,2 +1,8 @@
+<<<<<<< Updated upstream
 # Jetbrains tools
 .idea
+=======
+# IntelliJ IDEA
+.idea/
+
+>>>>>>> Stashed changes
