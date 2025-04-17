@@ -1,0 +1,1 @@
+import{_ as t,c as a,o as i,ae as o}from"./chunks/framework.Dh1jimFm.js";const f=JSON.parse('{"title":"CV","description":"","frontmatter":{},"headers":[],"relativePath":"cv.md","filePath":"cv.md"}'),r={name:"cv.md"};function n(s,e,c,l,d,h){return i(),a("div",null,e[0]||(e[0]=[o("",6)]))}const m=t(r,[["render",n]]);export{f as __pageData,m as default};

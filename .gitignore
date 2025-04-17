@@ -1,2 +1,4 @@
 # Jetbrains tools
 .idea
+
+node_modules
