@@ -15,11 +15,9 @@ hero:
       link: /blog
 
 features:
-  - title: Rapid PoC development
-    details: Validate your idea quickly
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: "Software Architect: Axial3D"
+    details: Making patient specific care routine, one technical challenge at a time.
+  - title: "Sheriff (Administrator/Moderator): CodeRanch.com"
+    details: Staff on the friendliest programming forum on the Internet for the last 10 years.
 
 ---

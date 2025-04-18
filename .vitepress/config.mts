@@ -4,10 +4,13 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Tim Cooke",
   description: "Tim Cooke",
+  head: [[
+      'script', { src: 'https://js.sentry-cdn.com/427ec6bd7a7abefb36b2ef7f12b2c325.min.js', crossorigin: 'anonymous' }
+  ]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'About Me', link: '/cv' },
       { text: 'Blog', link: '/blog' }
     ],
 
