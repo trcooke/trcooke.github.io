@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: About me
-      link: /cv
+      link: /aboutme/cv
     - theme: alt
       text: Blog
       link: /blog
