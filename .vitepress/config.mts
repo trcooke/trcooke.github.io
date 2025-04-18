@@ -5,7 +5,7 @@ export default defineConfig({
   title: "Tim Cooke",
   description: "Tim Cooke",
   head: [[
-      'script', { src: 'https://js.sentry-cdn.com/427ec6bd7a7abefb36b2ef7f12b2c325.min.js', crossorigin: 'anonymous' }
+      'script', { src: 'https://js-de.sentry-cdn.com/427ec6bd7a7abefb36b2ef7f12b2c325.min.js', crossorigin: 'anonymous' }
   ]],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -30,7 +30,9 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/trcooke' }
+      { icon: 'github', link: 'https://github.com/trcooke' },
+      { icon: 'linkedin', link: 'https://www.linkedin.com/in/trcooke/' },
+      { icon: 'x', link: 'https://x.com/timdrivendev' }
     ]
   }
 })
