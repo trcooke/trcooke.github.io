@@ -2,9 +2,19 @@
 
 ## Headline
 
-Nearly 20 years of solving problems with software in multiple programming languages across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for the future.
+Nearly 20 years of solving problems with software in multiple programming languages, with multiple programming paradigms, and across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for tomorrow.
 
 After all, change is the only constant.
+
+## Technology Hit List
+
+### Proficient in
+
+Java, jUnit, Maven, Gradle, Spring, Spring Boot, JSP, Groovy, Spock, Geb, Cucumber, Cypress, JDBC, Oracle, PostgreSQL, Tomcat, Linux/POSIX, Vue.js, HTML, CSS, TypeScript, JavaScript, Node.js, npm, Vite, Vitest, Jest, Python, pip, poetry, pytest, AWS, AWS CloudFormation, AWS CodePipeline.
+
+### Familiar with
+
+Clojure, Erlang, Elixir.
 
 ## Professional Experience
 
@@ -54,15 +64,19 @@ My first Software Engineering job after completing my Master's degree. The first
 
 ### Sheriff (Administrator & Moderator): CodeRanch.com (2014 - Present)
 
-CodeRanch is one of the oldest running programming forums on the Internet, starting its life as JavaRanch before expanding to cover many other aspects of programming and became CodeRanch. I joined as a regular user in 2008 but didn't post a single thing until early 2013. Nobody knows why. I was invited to join the staff as a Bartender (moderator) in 2014, and then promoted to a Sheriff (administrator) in 2015. I am also a member of the Book Promotion team.
-
-### Meetup organiser, Belfast FP
+CodeRanch is one of the oldest running programming forums on the Internet, starting its life as JavaRanch before expanding to cover many other aspects of programming and become CodeRanch. I joined as a regular user in 2008 but didn't post a single thing until early 2013. Nobody knows why. I was invited to join the staff as a Bartender (moderator) in 2014, and then promoted to a Sheriff (administrator) in 2015. I am also a member of the Book Promotion team.
 
 ### Conference organiser, KatsConf Belfast (2016)
 
-### Conference dogsbody, KatsConf Dublin (2015)
+After the success of the Dublin event, myself and the other Belfast FP meetup organiser decided to run a Kats Conf Belfast software developer conference event. We lead a group of four dealing with sponsorship arrangement, speaker selection, venue, catering, budgeting, promotion, sales, right through to managing the smooth running of the actual event on the day. The event was a success with positive feedback from attendees and speakers.
 
-### Meetup organiser, Belfast Functional Programming
+### Conference helper, KatsConf Dublin (2015)
+
+A conference born out of the Dublin based Functional Kats meetup group. I helped out as part of the organiser group with the preparation and on the day. It was great fun. Preparation involved setting up the website for the event and being part of the committee reviewing and selecting talk submissions, and on the day was supporting speakers by banishing tech gremlins, helping keep talks on schedule, and generally being available to help attendees.
+
+### Meetup organiser, Belfast Kats / Belfast FP (2015 - 2018)
+
+A community meetup group all about functional programming who met around once a month for lightning talks and programming katas.
 
 ## Education
 
