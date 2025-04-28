@@ -8,7 +8,7 @@ hero:
   tagline: Nearly 20 years of solving problems with software in multiple programming languages across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for tomorrow.
   actions:
     - theme: brand
-      text: About me
+      text: CV
       link: /aboutme/cv
 
 features:
