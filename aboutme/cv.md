@@ -18,13 +18,17 @@ Clojure, Erlang, Elixir.
 
 ## Professional Experience
 
-### Technical Reviewer, Secrets of the JavaScript Ninja 3rd Edition: Manning (2025 - Present)
+### Technical Reviewer, The Feedback-driven Developer: Manning (May 2025 - Present)
 
-I was contacted by Manning to review this new revision of an already successful title, and of course I said yes. An enjoyable project that is currently in progress.
+I was contacted by Manning to review this title. I've not seen anything like it so should be interesting.
 
 ### Software Architect: Axial3D, Belfast (2022 - Present)
 
 A deliberate shift from team leadership to technical leadership, facilitated by some strategic delegation of undifferentiated heavy lifting, allowing me to focus on enabling our team of excellent engineers, and myself, to deliver quality software into production. I design systems, I design interfaces between systems, I write code, I write automated tests, I engage with customers to propose technical solutions. and I am the lead implementer in the continued success of our ISO27001:2013 and ISO27001:2022 accreditation.
+
+### Technical Reviewer, Secrets of the JavaScript Ninja 3rd Edition: Manning (Apr 2025 - Apr 2025)
+
+I was contacted by Manning to review this new revision of an already successful title, and of course I said yes.
 
 ### Head of Engineering: Axial3D, Belfast (2020 - 2022)
 A leaving CTO and a joining CPO left a technical leadership sized hole in the organisation that I naturally and gladly filled. I provided overall leadership of the software and ML development teams, I had responsibility for Site Reliability and System Administration functions, responsibility for technical leadership of all software products, supporting development teams in making architecturally significant decisions. Part of a software system under my control became part of a Medical Device  passed by the FDA through a process that required detailed process improvements and documented evidence. All the while continuing to write code and deliver quality software systems into production.

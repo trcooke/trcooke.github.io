@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Tim Cooke"
   text: "Software Architect"
-  tagline: Nearly 20 years of solving problems with software in multiple programming languages across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for tomorrow.
+  tagline: Nearly 20 years of solving problems with software in multiple programming languages, with multiple programming paradigms, and across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for tomorrow.
   actions:
     - theme: brand
       text: CV
