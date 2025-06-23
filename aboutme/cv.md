@@ -14,7 +14,7 @@ Java, jUnit, Maven, Gradle, Spring, Spring Boot, JSP, Groovy, Spock, Geb, Cucumb
 
 ### Familiar with
 
-Clojure, Erlang, Elixir.
+Clojure, Kotlin, Erlang, Elixir.
 
 ## Professional Experience
 
