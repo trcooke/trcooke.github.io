@@ -1,7 +1,5 @@
 # CV
 
-[Download CV as pdf](Tim%20Cooke%20CV%202025-06%20Java%20Contract.pdf)
-
 ## Headline
 
 Nearly 20 years of solving problems with software in multiple programming languages, with multiple programming paradigms, and across multiple problem domains has resulted in a pragmatic and no nonsense approach to building software systems that meet the needs of today while being flexible enough to cater for tomorrow.
