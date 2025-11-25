@@ -12,11 +12,11 @@ hero:
       link: /aboutme/cv
 
 features:
-  - title: "Software Architect: Axial3D"
-    details: Making patient specific care routine, one technical challenge at a time.
-    link: https://axial3d.com
-    linkText: axial3d.com
-  - title: "Sheriff (Administrator/Moderator): CodeRanch.com"
+  - title: "Contract Software Architect and Engineer"
+    details: Delivering software architecture and engineering services to whoever needs it.
+    link: http://trcooke.co.uk
+    linkText: trcooke.co.uk
+  - title: "Sheriff (Administrator/Moderator) at CodeRanch.com"
     details: Staff on the friendliest programming forum on the Internet for the last 10 years.
     link: https://coderanch.com/forums
     linkText: coderanch.com/forums
